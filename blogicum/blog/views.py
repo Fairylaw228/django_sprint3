@@ -60,7 +60,11 @@ def index(request):
 
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
-    if post.pub_date > timezone.now() or not post.is_published or not post.category.is_published:
+    if (
+        post.pub_date > timezone.now()
+        or not post.is_published
+        or not post.category.is_published
+    ):
         raise Http404("Публикация недоступна.")
     return render(request, 'blog/detail.html', {'post': post})
 
