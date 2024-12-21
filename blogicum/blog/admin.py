@@ -2,8 +2,16 @@ from django.contrib import admin
 from .models import Post, Category, Location
 from django.utils.translation import gettext_lazy as _
 
+
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'pub_date', 'category', 'location', 'is_published')
+    list_display = (
+    'title', 
+    'author', 
+    'pub_date', 
+    'category', 
+    'location', 
+    'is_published'
+    )
     list_filter = ('category', 'is_published')
     search_fields = ('title', 'text')
 
@@ -24,11 +32,27 @@ admin.site.register(Location, LocationAdmin)
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'pub_date', 'category', 'location', 'is_published')
+    list_display = (
+    'title', 
+    'author', 
+    'pub_date', 
+    'category', 
+    'location', 
+    'is_published'
+    )
     list_filter = ('category', 'is_published')
     search_fields = ('title', 'text')
     fieldsets = (
-        (None, {'fields': ('title', 'text', 'author', 'category', 'location', 'is_published')}),
+        (None, {
+    'fields': (
+        'title', 
+        'text', 
+        'author', 
+        'category', 
+        'location', 
+        'is_published'
+    )
+    }),
         (_('Publication Info'), {'fields': ('pub_date', 'created_at')}),
     )
     verbose_name = _('публикация')
@@ -47,3 +71,4 @@ class LocationAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     verbose_name = _('местоположение')
     verbose_name_plural = _('местоположения')
+    
