@@ -88,4 +88,8 @@ def category_posts(request, category_slug):
         post.location = location
         post.save()
 
-    return render(request, 'blog/category.html', {'category': category, 'posts': posts})
+    return render(
+        request, 
+        'blog/category.html', 
+        {'category': category, 'posts': posts}
+    )
