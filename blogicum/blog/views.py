@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .models import Location, Post, Category
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
-from .models import Category, Post
 from django.http import Http404
 
 posts = [
@@ -48,15 +47,13 @@ posts = [
     },
 ]
 
-
 def index(request):
-
     post_list = Post.objects.filter(
-        pub_date__lte=timezone.now(), 
-        is_published=True, 
+        pub_date__lte=timezone.now(),
+        is_published=True,
         category__is_published=True
     ).order_by('-pub_date')[:5]
-    
+
     return render(request, 'blog/index.html', {'post_list': post_list})
 
 def post_detail(request, id):
