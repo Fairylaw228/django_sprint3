@@ -7,17 +7,21 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('category', 'is_published')
     search_fields = ('title', 'text')
 
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'is_published')
     search_fields = ('title',)
+
 
 class LocationAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_published')
     search_fields = ('name',)
 
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Location, LocationAdmin)
+
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'pub_date', 'category', 'location', 'is_published')
@@ -30,11 +34,13 @@ class PostAdmin(admin.ModelAdmin):
     verbose_name = _('публикация')
     verbose_name_plural = _('публикации')
 
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'is_published')
     search_fields = ('title',)
     verbose_name = _('категория')
     verbose_name_plural = _('категории')
+
 
 class LocationAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_published')

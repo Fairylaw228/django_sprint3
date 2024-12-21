@@ -50,12 +50,12 @@ posts = [
 
 
 def index(request):
-    # Получаем публикации, которые опубликованы и не позже текущего времени
+
     post_list = Post.objects.filter(
-        pub_date__lte=timezone.now(),  # Публикации, опубликованные не позже текущего времени
-        is_published=True,  # Публикации, которые опубликованы
-        category__is_published=True  # Публикации в опубликованных категориях
-    ).order_by('-pub_date')[:5]  # Получаем 5 последних публикаций
+        pub_date__lte=timezone.now(), 
+        is_published=True, 
+        category__is_published=True
+    ).order_by('-pub_date')[:5]
     
     return render(request, 'blog/index.html', {'post_list': post_list})
 
@@ -70,13 +70,11 @@ def category_posts(request, category_slug):
     if not category.is_published:
         raise Http404("Категория не опубликована.")
     
-    # Убедитесь, что у вас есть локации в базе данных
     location, created = Location.objects.get_or_create(name='Остров отчаянья', is_published=True)
 
-    # Теперь создаем посты или привязываем их к локации
     posts = Post.objects.filter(category=category, pub_date__lte=timezone.now(), is_published=True)
     for post in posts:
-        post.location = location  # Привязываем локацию к каждому посту
+        post.location = location
         post.save()
 
     return render(request, 'blog/category.html', {'category': category, 'posts': posts})
