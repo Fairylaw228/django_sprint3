@@ -89,7 +89,7 @@ def category_posts(request, category_slug):
         post.save()
 
     return render(
-        request, 
-        'blog/category.html', 
+        request,
+        'blog/category.html',
         {'category': category, 'posts': posts}
     )
