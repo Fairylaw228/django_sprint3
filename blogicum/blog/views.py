@@ -74,11 +74,18 @@ def category_posts(request, category_slug):
     if not category.is_published:
         raise Http404("Категория не опубликована.")
 
-    location, created = Location.objects.get_or_create(name='Остров отчаянья', is_published=True)
+    location, created = Location.objects.get_or_create(
+    name='Остров отчаянья',
+    is_published=True
+    )
 
     posts = Post.objects.filter(category=category, pub_date__lte=timezone.now(), is_published=True)
     for post in posts:
         post.location = location
         post.save()
 
-    return render(request, 'blog/category.html', {'category': category, 'posts': posts})
+    return render(
+    request,
+    'blog/category.html',
+    {'category': category, 'posts': posts}
+    )
