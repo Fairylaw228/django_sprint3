@@ -33,7 +33,10 @@ class Category(models.Model):
 class Location(models.Model):
     name = models.CharField(max_length=256, verbose_name='Название места')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Добавлено')
-    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+    is_published = models.BooleanField(
+        default=True,
+        verbose_name='Опубликовано'
+    )
 
     class Meta:
         verbose_name = "местоположение"
@@ -70,8 +73,14 @@ class Post(models.Model):
         on_delete=models.SET_NULL,
         verbose_name="Категория"
     )
-    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Добавлено')
+    is_published = models.BooleanField(
+        default=True,
+        verbose_name='Опубликовано'
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Добавлено'
+    )
 
     class Meta:
         verbose_name = "публикация"
